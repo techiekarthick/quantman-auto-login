@@ -22,7 +22,7 @@ const doLoginFlattrade = async (username, password, pin) => {
 
   (await driver.findElement(By.id('btn-flattrade'))).click();
   console.log(`step 1 completed `);
-  await delay(2000);
+  await delay(3000);
 
   let staleElement = true;
   while (staleElement) {
@@ -35,42 +35,24 @@ const doLoginFlattrade = async (username, password, pin) => {
     }
   }
 
-  if (await driver.findElement(By.xpath("//input[@type = 'text']"))) {
-    console.log('Found text')
-  } else {
-    console.log('Not Found text')
-  }
-
   console.log(`step 2 username completed `);
   await delay(1000);
   (await driver.findElement(By.id('pwd'))).sendKeys(password);
   console.log(`step 3 password completed `);
 
-  if (await driver.findElement(By.id('pwd'))) {
-    console.log('found password')
-  } else {
-    console.log('Not found password')
-  }
-
   await delay(1000);
 
   (await driver.findElement(By.id('pan'))).sendKeys(pin);
   console.log(`step 4 pin completed`);
-  if (await driver.findElement(By.id('pan'))) {
-    console.log('found pan')
-  } else {
-    console.log('Not found pan')
-  }
 
   await delay(2000);
 
   (await driver.findElement(By.id('sbmt'))).click();
-  if (await driver.findElement(By.id('sbmt'))) {
-    console.log('found sbmt')
-  } else {
-    console.log('Not found sbmt')
-  }
   console.log(`step 5 submit completed `);
+
+  console.log(await driver.findElement(By.xpath("//input[@type = 'text']")).getAttribute("value"), 'name')
+  console.log(await driver.findElement(By.id('pwd')).getAttribute("value"), 'pass')
+  console.log(await driver.findElement(By.id('pan')).getAttribute("value"), 'pan')
 
   await driver.wait(until.titleIs('Quantman'), 5000);
   console.log(`step 6 Quantman title completed `);
