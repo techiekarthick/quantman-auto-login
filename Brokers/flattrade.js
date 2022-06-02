@@ -35,6 +35,12 @@ const doLoginFlattrade = async (username, password, pin) => {
     }
   }
 
+  if(driver.findElement(By.xpath("//input[@type = 'text']"))) {
+    console.log('Found Text')
+  } else {
+    console.log('Not Found text')
+  }
+
   await delay(1000);
   (await driver.findElement(By.id('pwd'))).sendKeys(password);
   await delay(1000);
