@@ -7,7 +7,6 @@ const doLoginFlattrade = async (username, password, pin) => {
     .forBrowser('chrome')
     .setChromeOptions(new chrome.Options().headless().windowSize(screen))
     .build();
-  console.log('Browser initialized');
 
   driver.manage().setTimeouts({ implicit: 3000, pageLoad: 300000, script: 30000 })
 
@@ -41,10 +40,6 @@ const doLoginFlattrade = async (username, password, pin) => {
 
   (await driver.findElement(By.id('sbmt'))).click();
   console.log(`step 5 submit completed `);
-
-  console.log(await driver.findElement(By.xpath("//input[@type = 'text']")).getAttribute("value"), 'name')
-  console.log(await driver.findElement(By.id('pwd')).getAttribute("value"), 'pass')
-  console.log(await driver.findElement(By.id('pan')).getAttribute("value"), 'pan')
 
   await driver.wait(until.titleIs('Quantman'), 5000);
   console.log(`step 6 Quantman title completed `);
