@@ -35,24 +35,23 @@ const doLoginFlattrade = async (username, password, pin) => {
     }
   }
 
-  if(driver.findElement(By.xpath("//input[@type = 'text']"))) {
-    console.log('Found Text')
-  } else {
-    console.log('Not Found text')
-  }
-
+  console.log(`step 2 username completed `);
   await delay(1000);
   (await driver.findElement(By.id('pwd'))).sendKeys(password);
+  console.log(`step 3 password completed `);
+
   await delay(1000);
 
   (await driver.findElement(By.id('pan'))).sendKeys(pin);
+  console.log(`step 4 pin completed`);
+
   await delay(2000);
 
   (await driver.findElement(By.id('sbmt'))).click();
-  console.log(`step 2 completed `)
+  console.log(`step 5 submit completed `);
 
   await driver.wait(until.titleIs('Quantman'), 3000);
-  console.log(`step 3 completed `);
+  console.log(`step 6 Quantman title completed `);
 
   await driver.quit();
 };
